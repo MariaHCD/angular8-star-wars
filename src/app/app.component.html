@@ -1,8 +1,32 @@
 <div class="container">
   <img width="400" src="../assets/images/694px-Star_Wars_Logo.svg.png" alt="" />
-  <div>
-    <a class="btn-main">
+  <div class=btn-container>
+    <button class="btn-main" type="button" (click)="submit()" [disabled]="isLoading">
       &#9733; Do. Or do not. There is no try. &#9733;
-    </a>
+    </button>
+  </div>
+  <br />
+  <div class="results">
+    <h2 *ngIf="isLoading">Loading...</h2>
+    <div *ngIf="!isLoading && result.longestCrawl">
+      <h2>
+        Which of all StarWars movies has the longest opening crawl?
+      </h2>
+      <h2 class="answer">{{result.longestCrawl}}</h2>
+    </div>
+
+    <div *ngIf="!isLoading && result.mostCharacterAppearances">
+      <h2>
+        What character (person) appeared in the most Star Wars films?
+      </h2>
+      <h2 class="answer">{{result.mostCharacterAppearances}}</h2>
+    </div>
+
+    <div *ngIf="!isLoading && result.topSpecies.length">
+      <h2>
+        What species appeared in the most number of Star Wars films?
+      </h2>
+      <h2 class="answer" *ngFor="let species of result.topSpecies">{{species.name}} ({{species.number_of_appearances}})</h2>
+    </div>
   </div>
 </div>
