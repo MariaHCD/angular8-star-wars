@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto:700&display=swap');
+
+body {
+  background-color: black;
+  font-family: 'Roboto';
+}
+
+.container {
+  text-align: center;
+}
+
+%shadow {
+  position: absolute;
+  content: '';
+}
+
+.btn-main {
+  font-size: 28px;
+  display: inline-block;
+  padding: 20px 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  vertical-align: middle;
+  text-decoration: none;
+  background-color: #EEDB00;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px rgba(255, 255, 190, .75);
+  cursor: pointer;
+
+  &::before {
+    @extend %shadow;
+    bottom: -10px;
+    height: 10px;
+    width: 100%;
+    left: 0;
+    transform: skewY(180deg);
+    background-color: darken(#EEDB00, 20%);
+    border-radius: 0 0 10px 10px;
+  }
+
+  &:hover {
+    margin-top: 5px;
+    background-color: #ffee33;
+
+    &::before {
+      bottom: -5px;
+      height: 5px;
+    }
+  }
+}
