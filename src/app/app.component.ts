@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { Angular2SwapiService } from 'angular2-swapi';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,26 +17,25 @@ export class AppComponent {
   isLoading: boolean;
   films = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private swapi: Angular2SwapiService
+  ) { }
 
   /**
    * Function that executes when the button is clicked
    */
   submit() {
     this.isLoading = true;
-    this.getFilms();
-  }
 
-  /**
-   * Send an API call to retrieve a list of films
-   */
-  getFilms() {
-    this.http.get(this.apiUrl + 'films').subscribe(
-      (response: any) => {
-        this.films = response.results;
-        this.getFilmStatistics();
+    this.swapi.getFilms().toPromise().then(
+      (films) => {
+        this.films = films;
       }
-    );
+    ).then(() => {
+      this.getFilmStatistics();
+      this.isLoading = false;
+    });
   }
 
   /**
@@ -100,7 +100,6 @@ export class AppComponent {
         number_of_appearances: species.count
       });
     });
-    this.isLoading = false;
   }
 
   /**
