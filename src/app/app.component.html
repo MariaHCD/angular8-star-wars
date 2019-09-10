@@ -26,7 +26,22 @@
       <h2>
         What species appeared in the most number of Star Wars films?
       </h2>
-      <h2 class="answer" *ngFor="let species of result.topSpecies">{{species.name}} ({{species.number_of_appearances}})</h2>
+      <h2 class="answer" *ngFor="let species of result.topSpecies">{{species.name}} ({{species.number_of_appearances}})
+      </h2>
+    </div>
+
+    <div *ngIf="!isLoading && result.topPilotProvider !== null">
+      <h2>
+        What planet in StarWars universe provided largest number of vehicle pilots?
+      </h2>
+      <h2 class="answer">
+        Planet: {{result.topPilotProvider.name}} -
+        Pilots: ({{result.topPilotProvider.number_of_pilots}})
+        <span *ngFor="let pilot of result.topPilotProvider.pilots; let i = index">
+          <span *ngIf="i !== 0">, </span>
+          {{pilot.name}} - {{pilot.species}}
+        </span>
+      </h2>
     </div>
   </div>
 </div>
