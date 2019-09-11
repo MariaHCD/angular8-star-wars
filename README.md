@@ -1,6 +1,8 @@
-# Angular8StarWars
+# Angular 8 Star Wars
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.0.
+
+[View Demo](https://star-wars-api.netlify.com/)
 
 ## Development server
 
